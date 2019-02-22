@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as phoneActions from 'modules/phonebook'
+import PhoneList from '../components/phonebook/PhoneList';
+import Header from '../components/phonebook/Header';
+import Search from '../components/phonebook/Search';
 
 class PhoneBookContainer extends Component {
     
@@ -30,9 +33,18 @@ class PhoneBookContainer extends Component {
         PhoneActions.remove(e)
     }
 
+    handleClick = (e) => {
+        console.log("====== phonebook/Click ======")
+    }
+
+    
+
     render() {
-        const {id, name, number } = this.props;
-        const { handleInsert, handleRemove } = this.props;
+        const {id, phoneList, searchState, searchList } = this.props;
+        const { 
+            handleInsert, 
+            handleRemove, 
+            handleClick } = this;
         return (
             <div>
                 PhoneBookContainer
@@ -41,6 +53,17 @@ class PhoneBookContainer extends Component {
                 <button onClick={this.handleRemove} >삭제 테스트 </button>
                 <input name="name" placeholder="name" onChange={this.handleChange}/>
                 <input name="number" placeholder="number" onChange={this.handleChange}/>
+
+                {/* 뒤로가기, 헤더, 추가 */}
+                <Header/>
+                {/* 검색창 */}
+                <Search/>
+                {/* 목록 */}
+                <PhoneList 
+                    phoneList={ searchState ? searchList : phoneList} 
+                    handleClick={handleClick}
+                    handleRemove={handleRemove}
+                />
             </div>
             
         )

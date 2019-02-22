@@ -1,5 +1,5 @@
 import { handleActions, createAction } from 'redux-actions';
-import { Map, List, FromJS} from 'immutable';
+import { Map, List} from 'immutable';
 
 const CHANGE = "CHANGE"
 const INSERT = "INSERT"

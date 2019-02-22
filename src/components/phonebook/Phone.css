@@ -1,0 +1,13 @@
+
+.phone {
+    display: flex;
+}
+
+.phone .name{
+    font-weight: 500;
+}
+
+.phone-delete {
+    background-color:red;
+    color: white;
+}

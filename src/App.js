@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { Route } from 'react-router-dom'
 import { Home, PhonebookPage } from 'pages'
 import Menu from 'components/Menu'
-import PhoneBookContainer from 'containers/PhoneBookContainer'
 import './App.css';
 
 class App extends Component {

@@ -1,6 +1,6 @@
 .main-menu{
     display:flex;
-    broder-bottom-color: #bbbbbb;
+    border-bottom-color: #bbbbbb;
     border-bottom-style: solid;
     border-width: 0.1px;
     padding: 0.5rem;
