@@ -1,15 +1,12 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
+import './Menu.css';
 
 const Menu = () => {
     return(
-        <div>
-            <ul>
-                <li><NavLink exact to="/" > 홈 </NavLink></li>
-                <li><NavLink exact to="/phonebook" > 연락처 </NavLink></li>
-            </ul>
-            
-            
+        <div className="main-menu">
+            <div className="menu"><NavLink exact to="/" activeClassName="menu-active"> 홈 </NavLink></div>
+            <div className="menu"><NavLink exact to="/phonebook" activeClassName="menu-active"> 연락처 </NavLink></div>
         </div>
     )
 }
