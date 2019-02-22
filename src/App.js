@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Route } from 'react-router-dom'
-import { Home } from 'pages'
+import { Home, PhonebookPage } from 'pages'
 import Menu from 'components/Menu'
 import PhoneBookContainer from 'containers/PhoneBookContainer'
 import './App.css';
@@ -11,7 +11,7 @@ class App extends Component {
       <div className="App">
         <Menu/>
         <Route exact path="/" component={Home} />
-        <Route exact path="/phonebook" component={PhoneBookContainer} />
+        <Route exact path="/phonebook" component={PhonebookPage} />
       </div>
     );
   }
