@@ -1,20 +1,24 @@
 import React from 'react';
-import { Link } from 'react-router-dom'
 import Header from './Header';
+import './PhoneForm.css'
 
 
 const PhoneForm =({name, number, handleChange, handleInsert, handleGoBack, history}) => {
     return(
         <div>
             PhoneForm
-            <Header title='새로운 연락처' handleLeftBtn={handleGoBack} history={history} />
-            <div>
-                <input name="name" placeholder="name" onChange={handleChange} value={name}/>
-                <input name="number" placeholder="number" onChange={handleChange} value={number}/>
+            <Header 
+                handleLeftBtn={handleGoBack} 
+                handleRightBtn={handleInsert}
+                formMode='insert' />
+            <div className="phone-input-area">
+                <input className="phone-input" name="name" placeholder="name" onChange={handleChange} value={name}/>
+                <input className="phone-input" name="number" placeholder="number" onChange={handleChange} value={number}/>
             </div>
-            <div onClick={handleInsert}>
+
+            {/* <div onClick={handleInsert}>
                 <Link to="/phonebook/">저장하기</Link>
-            </div>
+            </div> */}
             
         </div>
     )

@@ -4,8 +4,9 @@
     justify-content: space-between;
 }
 
-.phone .name{
+.phone-name {
     font-weight: 500;
+    text-decoration: none;
 }
 
 .phone-delete {

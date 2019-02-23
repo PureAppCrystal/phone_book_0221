@@ -18,10 +18,17 @@ const getId = (state) => {
 }
 
 const initialState = Map({
-    id: 0,
+    id: 1,
     name: '',
     number: '',
-    phoneList: List([]),
+    //phoneList: List([]),
+    phoneList: List([ 
+        Map({
+            id: '1',
+            name: 'aaaa',
+            number: '123'
+        })
+    ]),
     searchList: List([]),
     searchState: false
 })

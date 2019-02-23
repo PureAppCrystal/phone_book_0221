@@ -2,12 +2,11 @@ import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as phoneActions from 'modules/phonebook'
-import { Link, Route } from 'react-router-dom';
 import PhoneList from '../components/phonebook/PhoneList';
 import Header from '../components/phonebook/Header';
 import Search from '../components/phonebook/Search';
 import PhoneForm from '../components/phonebook/PhoneForm';
-import { withRouter } from 'react-router-dom';
+import queryString from 'query-string'
 
 class PhoneBookContainer extends Component {
     
@@ -29,17 +28,18 @@ class PhoneBookContainer extends Component {
         const { PhoneActions } = this.props
 
         PhoneActions.insert({id, name, number});
-        PhoneActions.change({['name']: '', ['number']: ''})
+        PhoneActions.change({'name': '', 'number': ''})
     }
 
     handleRemove = (id) => {
         console.log("====== phonebook/Remove ======")
         const { PhoneActions } = this.props
-        PhoneActions.remove({['id']: id})
+        PhoneActions.remove({'id': id})
     }
 
     handleClick = (e) => {
         console.log("====== phonebook/Click ======")
+
     }
 
     handleGoBack = () => {
@@ -48,33 +48,29 @@ class PhoneBookContainer extends Component {
         history.goBack();
     }
 
-    handleMoveInsert = () => {
-        console.log("====== phonebook/MoveInsert ======")
-        const { match, history } = this.props;
-        //<Route path={`${match.url}/:id`} component={PhoneForm}/>
-        
-    }
-
+    
     handleSearch = (e) => {
         console.log("====== phonebook/Search ======")
         console.log("e : ", e.target.value)
         const { PhoneActions } = this.props
-        PhoneActions.search({['name']: e.target.value})
+        PhoneActions.search({'name': e.target.value})
     }
 
     
 
     render() {
-        const {id, name, number, phoneList, searchState, searchList, match, history } = this.props;
+        const {id, name, number, phoneList, searchState, searchList, match, location } = this.props;
         const { 
             handleInsert, 
             handleRemove, 
             handleClick,
-            handleMoveInsert,
             handleGoBack,
             handleSearch,
             handleChange } = this;
 
+            console.log("match : ", match)
+
+            
 
         // 연락처 등록하기 target : insert
         if (match.params.target === 'insert') {
@@ -86,6 +82,21 @@ class PhoneBookContainer extends Component {
                     handleInsert={handleInsert}
                     handleGoBack={handleGoBack}
                 />
+            )
+        } else if (match.params.target === 'select') {
+            const id = (queryString.parse(location.search)).id;
+            console.log('id : ', id)
+           
+            const searchList = phoneList.filter( phoneList => 
+                phoneList.getIn([0, 'id']) === id //  
+            )
+                    // dfljasdkfjk 어케하는겨 
+         
+            
+            return(
+                <div>
+                    
+                </div>
             )
         }
             
@@ -105,10 +116,10 @@ class PhoneBookContainer extends Component {
 
                 {/* 뒤로가기, 헤더, 추가 */}
                 <Header 
-                    title='연락처'
+                    formMode='list'
                     handleLeftBtn={handleGoBack}
-                    handleRightBtn={handleMoveInsert}
-                    history={history}
+                    
+                    
                 />
                 {/* 검색창 */}
                 <Search

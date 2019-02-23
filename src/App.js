@@ -3,8 +3,6 @@ import { Route } from 'react-router-dom'
 import { Home, PhonebookPage } from 'pages'
 import Menu from 'components/Menu'
 import './App.css';
-import history from 'react-router-dom'
-import Phone from './components/phonebook/Phone';
 
 
 class App extends Component {
