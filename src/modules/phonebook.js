@@ -4,10 +4,12 @@ import { Map, List} from 'immutable';
 const CHANGE = "CHANGE"
 const INSERT = "INSERT"
 const REMOVE = "REMOVE"
+const SEARCH = "SEARCH"
 
 export const change = createAction(CHANGE);
 export const insert = createAction(INSERT);
 export const remove = createAction(REMOVE);
+export const search = createAction(SEARCH);
 
 
 const getId = (state) => {
@@ -44,6 +46,26 @@ export default handleActions({
     },
     [REMOVE]: (state, action) => {
         //
-        return state;
+        const {id} = action.payload;
+
+        const index = state.get('phoneList').findIndex(phoneList => phoneList.get('id') === id)
+        const newState = state.set('phoneList', state.get('phoneList').delete(index))   
+        return newState;
+    },
+    [SEARCH]: (state, action) => {
+        const {name} = action.payload;
+        let newState
+        if ( name !== undefined && name.length > 0) {
+            const searchList = state.get('phoneList').filter( phoneList => 
+                phoneList.get('name').search(name) >= 0
+            )
+            newState = state.set('searchList', searchList).set('searchState', true);
+        } else {
+            newState = state.set('searchState', false);
+        }
+
+        return newState;
+        
+
     }
 }, initialState)

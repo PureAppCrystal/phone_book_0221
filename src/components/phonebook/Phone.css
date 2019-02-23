@@ -1,6 +1,7 @@
 
 .phone {
     display: flex;
+    justify-content: space-between;
 }
 
 .phone .name{

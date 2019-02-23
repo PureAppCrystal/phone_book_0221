@@ -1,0 +1,8 @@
+
+.phone-list-header {
+    background-color: #d2d2d2;
+    display: flex;
+    justify-content: space-between;
+    height: 2rem;
+    padding: 1rem;
+}
