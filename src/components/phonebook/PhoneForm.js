@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom'
 import Header from './Header';
 
 
@@ -12,7 +13,7 @@ const PhoneForm =({name, number, handleChange, handleInsert, handleGoBack, histo
                 <input name="number" placeholder="number" onChange={handleChange} value={number}/>
             </div>
             <div onClick={handleInsert}>
-                저장하기
+                <Link to="/phonebook/">저장하기</Link>
             </div>
             
         </div>

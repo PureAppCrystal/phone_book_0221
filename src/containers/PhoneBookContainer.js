@@ -96,7 +96,8 @@ class PhoneBookContainer extends Component {
             <div>
                 
                 PhoneBookContainer
-                {id}
+                id: {id}
+                연락처 갯수 {phoneList.size}
                 {/* <button onClick={this.handleInsert}  >등록 테스트 </button>
                 <button onClick={this.handleRemove}>삭제 테스트 </button>
                 <input name="name" placeholder="name" onChange={this.handleChange} value={name}/>

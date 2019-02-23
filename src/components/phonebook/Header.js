@@ -14,6 +14,12 @@ const Header = ({handleLeftBtn, handleRightBtn, title, history}) => {
                 {title}
             </div>
 
+            <Link to="/phonebook/insert">
+                <div>
+                    추가ㅎ
+                </div>
+            </Link>
+            
             <Link to="/phonebook/insert" >추가</Link>
             <div className="phone-add" onClick={handleRightBtn}>
                 추가
