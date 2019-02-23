@@ -14,7 +14,7 @@ class App extends Component {
         <Menu/>
         <Route exact path="/" component={Home} />
         {/* <Route exact path="/phonebook" component={PhonebookPage} /> */}
-        <Route exact path="/phonebook" component={PhonebookPage}/>
+        <Route exact path="/phonebook/:target?" component={PhonebookPage}/>
           
         
         

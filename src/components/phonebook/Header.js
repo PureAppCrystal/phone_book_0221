@@ -1,8 +1,9 @@
 import React from 'react';
+import { Link } from 'react-router-dom'
 import './Header.css';
 
 
-const Header = ({handleLeftBtn, handleRightBtn, title}) => {
+const Header = ({handleLeftBtn, handleRightBtn, title, history}) => {
     return(
         <div className="phone-list-header">
             <div className='goback' onClick={handleLeftBtn}>
@@ -13,6 +14,7 @@ const Header = ({handleLeftBtn, handleRightBtn, title}) => {
                 {title}
             </div>
 
+            <Link to="/phonebook/insert" >추가</Link>
             <div className="phone-add" onClick={handleRightBtn}>
                 추가
             </div>

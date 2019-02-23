@@ -7,6 +7,7 @@ import PhoneList from '../components/phonebook/PhoneList';
 import Header from '../components/phonebook/Header';
 import Search from '../components/phonebook/Search';
 import PhoneForm from '../components/phonebook/PhoneForm';
+import { withRouter } from 'react-router-dom';
 
 class PhoneBookContainer extends Component {
     
@@ -43,12 +44,15 @@ class PhoneBookContainer extends Component {
 
     handleGoBack = () => {
         console.log("====== phonebook/GoBack ======")
+        const { history } = this.props;
+        history.goBack();
     }
 
     handleMoveInsert = () => {
         console.log("====== phonebook/MoveInsert ======")
-        const { match } = this.props;
+        const { match, history } = this.props;
         //<Route path={`${match.url}/:id`} component={PhoneForm}/>
+        
     }
 
     handleSearch = (e) => {
@@ -61,45 +65,49 @@ class PhoneBookContainer extends Component {
     
 
     render() {
-        const {id, name, number, phoneList, searchState, searchList } = this.props;
+        const {id, name, number, phoneList, searchState, searchList, match, history } = this.props;
         const { 
             handleInsert, 
             handleRemove, 
             handleClick,
             handleMoveInsert,
             handleGoBack,
-            handleSearch } = this;
+            handleSearch,
+            handleChange } = this;
 
 
+        // 연락처 등록하기 target : insert
+        if (match.params.target === 'insert') {
+            return(
+                <PhoneForm 
+                    name={name} 
+                    number={number}
+                    handleChange={handleChange}
+                    handleInsert={handleInsert}
+                    handleGoBack={handleGoBack}
+                />
+            )
+        }
             
-
-
-            // <Route exact path="/phonebook/insert" render={() => (
-            //     <PhoneForm 
-            //         name={this.props.name} 
-            //         number={number}
-            //         handleInsert={handleInsert}
-            //         handleGoBack={handleGoBack}
-            //     />
-            // )}/>
-
-
 
         return (
             
+
             <div>
+                
                 PhoneBookContainer
                 {id}
-                <button onClick={this.handleInsert}  >등록 테스트 </button>
+                {/* <button onClick={this.handleInsert}  >등록 테스트 </button>
                 <button onClick={this.handleRemove}>삭제 테스트 </button>
                 <input name="name" placeholder="name" onChange={this.handleChange} value={name}/>
-                <input name="number" placeholder="number" onChange={this.handleChange} value={number}/>
+                <input name="number" placeholder="number" onChange={this.handleChange} value={number}/> */}
 
                 {/* 뒤로가기, 헤더, 추가 */}
                 <Header 
                     title='연락처'
                     handleLeftBtn={handleGoBack}
                     handleRightBtn={handleMoveInsert}
+                    history={history}
                 />
                 {/* 검색창 */}
                 <Search

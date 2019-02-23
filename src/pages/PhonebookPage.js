@@ -1,10 +1,11 @@
 import React from 'react';
 import PhoneBookContainer from 'containers/PhoneBookContainer'
 
-const PhonebookPage = () => {
+const PhonebookPage = (props) => {
+    const {location, match, history } = props;
     return(
         <div>
-            <PhoneBookContainer/>
+            <PhoneBookContainer location={location} match={match} history={history}/>
         </div>
     )
 }
