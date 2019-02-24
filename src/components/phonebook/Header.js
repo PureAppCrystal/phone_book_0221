@@ -31,10 +31,11 @@ const Header = ({id, handleLeftBtn, handleRightBtn, formMode}) => {
             break;
         case 'update':
             rightBtn = {
-                conterTitle: "연락처 편집",
+                centerTitle: "연락처 편집",
                 rightTitle: "완료",
                 target: `/phonebook/select?id=${id}`,
                 onClick: {handleRightBtn}
+                //onClick: {handleLeftBtn}
             }
             break;
         default :

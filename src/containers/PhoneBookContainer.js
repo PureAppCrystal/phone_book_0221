@@ -22,6 +22,11 @@ class PhoneBookContainer extends Component {
         PhoneActions.change({[e.target.name]: e.target.value})
     }
 
+    handleFormReset = () => {
+        const { PhoneActions } = this.props
+        PhoneActions.change({'name': '', 'number': ''})
+    }
+
     handleInsert = () => {
         console.log("====== phonebook/Insert ======")
         const { id, name, number } = this.props
@@ -90,7 +95,9 @@ class PhoneBookContainer extends Component {
             handleSearch,
             handleChange,
             handleUpdate,
-            handleGotoUpdate } = this;
+            handleGotoUpdate,
+            PhoneActions,
+            handleFormReset } = this;
 
             console.log("match : ", match)
 
@@ -105,21 +112,19 @@ class PhoneBookContainer extends Component {
                     handleChange={handleChange}
                     handleRight={handleInsert}
                     handleGoBack={handleGoBack}
+                    handleFormReset={handleFormReset}
                     formMode='insert'
                 />
             )
         } 
         /////////////////////////// 연락처 선택하기 target : select
         else if (match.params.target === 'select') {
-            console.log("1")
             const selectedId = (queryString.parse(location.search)).id;
            
-            console.log("2")
             const phone = new Map((phoneList.filter( phoneList => (
                 (phoneList.get('id')).toString() === selectedId //  
             )).get(0)))
 
-            console.log("3")
             return(
                 <PhoneForm 
                     id={phone.get('id')}
@@ -128,6 +133,7 @@ class PhoneBookContainer extends Component {
                     handleChange={handleChange}
                     handleRight={handleGotoUpdate}
                     handleGoBack={handleGoBack}
+                    handleFormReset={handleFormReset}
                     formMode='select'
                 />
             )
@@ -155,6 +161,7 @@ class PhoneBookContainer extends Component {
                     handleChange={handleChange}
                     handleRight={handleUpdate}
                     handleGoBack={handleGoBack}
+                    handleFormReset={handleFormReset}
                     formMode='update'
                 />
             )
@@ -179,6 +186,7 @@ class PhoneBookContainer extends Component {
                 <Header 
                     formMode='list'
                     handleLeftBtn={handleGoBack}
+                    id ={id}
                     
                     
                 />

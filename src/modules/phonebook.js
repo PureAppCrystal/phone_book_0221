@@ -76,7 +76,6 @@ export default handleActions({
         return newState;
     },
     [UPDATE] : (state, action) => {
-        console.log("action : ", action )
 
         const { id } = action.payload;
         const phoneList = state.get('phoneList');
