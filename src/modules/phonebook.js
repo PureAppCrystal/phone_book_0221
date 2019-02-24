@@ -20,15 +20,25 @@ const getId = (state) => {
 }
 
 const initialState = Map({
-    id: 1,
+    id: 3,
     name: '',
     number: '',
     //phoneList: List([]),
     phoneList: List([ 
         Map({
             id: 1,
-            name: 'aaaa',
-            number: '123'
+            name: '리액트',
+            number: '02-1234-3357'
+        }),
+        Map({
+            id: 12,
+            name: '후니',
+            number: '010-1234-1234'
+        }),
+        Map({
+            id: 3,
+            name: '라이언',
+            number: '010-4456-5567'
         })
     ]),
     searchList: List([]),

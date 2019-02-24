@@ -1,9 +1,24 @@
 
 .phone-search {
-    background-color: #d0d0d0;
+    background-color: #ebebeb;
     padding: 1rem;
 }
 
 .phone-search-input {
-    width: 100%;
+    width: 95%;
+
+    padding-left : 10px;
+    
+    height: 2rem;
+    
+    background-color: #ffffffa4;
+    outline: none;
+    border: none;
+    border-bottom: 0px solid #224466;
+    border-radius: 10px;
+
+    font-size: 1.5rem;
+    color:  #000000a2;
 }
+
+

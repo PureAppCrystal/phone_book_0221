@@ -4,7 +4,7 @@ import './Header.css';
 
 
 const Header = ({id, handleLeftBtn, handleRightBtn, formMode}) => {
-
+    let headerClass = "phone-list-header"
     let rightBtn = {}
     switch (formMode) {
         case 'insert':
@@ -21,6 +21,7 @@ const Header = ({id, handleLeftBtn, handleRightBtn, formMode}) => {
                 rightTitle: "등록",
                 target: "/phonebook/insert"
             }
+            headerClass = "phone-list-header header-list"
             break;
         case 'select':
             rightBtn = {
@@ -45,7 +46,7 @@ const Header = ({id, handleLeftBtn, handleRightBtn, formMode}) => {
 
 
     return(
-        <div className="phone-list-header">
+        <div className={headerClass}>
             <div className='goback' onClick={handleLeftBtn}>
                 뒤로
             </div>
@@ -54,16 +55,11 @@ const Header = ({id, handleLeftBtn, handleRightBtn, formMode}) => {
                 {rightBtn.centerTitle}
             </div>
 
-
-            <div className="header-right-btn" onClick={handleRightBtn}>
-                <Link className="header-right-btn" to={rightBtn.target} >
+            <Link className="header-right-btn" to={rightBtn.target}>
+                <div className="header-right-btn" onClick={handleRightBtn}>
                     {rightBtn.rightTitle}
-                </Link>
-            </div>
-
-            
-            
-            
+                </div>
+            </Link>
         </div>
     )
 }

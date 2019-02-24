@@ -1,17 +1,29 @@
 
 .phone-list-header {
-    background-color: #d2d2d2;
+    background-color: #ffffff;
     display: flex;
     justify-content: space-between;
     height: 2rem;
     padding: 2rem;
-    font-weight: 700;
+    font-weight: 500;
+    font-size: 1.5rem;
+    color: #000000a2;
+}
+
+.header-list {
+    background-color: #ebebeb;
 }
 
 
 
-
 .header-right-btn {
-    font-size: 1rem;
+    
     text-decoration: none !important;
+    color: #4893f5;
+}
+
+
+.goback{
+    cursor:pointer;
+    color: #4893f5;
 }

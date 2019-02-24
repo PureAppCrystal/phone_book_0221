@@ -13,7 +13,6 @@ class PhoneBookContainer extends Component {
     constructor(props) {
         super(props);
 
-        console.log("props : ", props)
     }
 
     handleChange = (e) => {
@@ -25,6 +24,7 @@ class PhoneBookContainer extends Component {
     handleFormReset = () => {
         const { PhoneActions } = this.props
         PhoneActions.change({'name': '', 'number': ''})
+        PhoneActions.search({'name': ''})
     }
 
     handleInsert = () => {
@@ -56,7 +56,6 @@ class PhoneBookContainer extends Component {
     
     handleSearch = (e) => {
         console.log("====== phonebook/Search ======")
-        console.log("e : ", e.target.value)
         const { PhoneActions } = this.props
         PhoneActions.search({'name': e.target.value})
     }
@@ -96,10 +95,8 @@ class PhoneBookContainer extends Component {
             handleChange,
             handleUpdate,
             handleGotoUpdate,
-            PhoneActions,
             handleFormReset } = this;
 
-            console.log("match : ", match)
 
             
 
@@ -120,7 +117,6 @@ class PhoneBookContainer extends Component {
         /////////////////////////// 연락처 선택하기 target : select
         else if (match.params.target === 'select') {
             const selectedId = (queryString.parse(location.search)).id;
-           
             const phone = new Map((phoneList.filter( phoneList => (
                 (phoneList.get('id')).toString() === selectedId //  
             )).get(0)))
@@ -141,21 +137,11 @@ class PhoneBookContainer extends Component {
         /////////////////////////// 연락처 수정하기 target : update
         else if (match.params.target === 'update') {
             const selectedId = (queryString.parse(location.search)).id;
-            //console.log('id : ', id)
-           
-            const phone = new Map((phoneList.filter( phoneList => (
-                (phoneList.get('id')).toString() === selectedId //  
-            )).get(0)))
-
-
-            
             const {name, number} = this.props
-
-
 
             return(
                 <PhoneForm 
-                    id={phone.get('id')}
+                    id={selectedId}
                     name={name} 
                     number={number}
                     handleChange={handleChange}
@@ -168,32 +154,23 @@ class PhoneBookContainer extends Component {
         }
 
             
-
+        /////////////////////////// 디폴트 리스트 !
         return (
             
 
             <div>
-                
-                PhoneBookContainer
-                id: {id}
-                연락처 갯수 {phoneList.size}
-                {/* <button onClick={this.handleInsert}  >등록 테스트 </button>
-                <button onClick={this.handleRemove}>삭제 테스트 </button>
-                <input name="name" placeholder="name" onChange={this.handleChange} value={name}/>
-                <input name="number" placeholder="number" onChange={this.handleChange} value={number}/> */}
-
                 {/* 뒤로가기, 헤더, 추가 */}
                 <Header 
                     formMode='list'
                     handleLeftBtn={handleGoBack}
                     id ={id}
-                    
-                    
                 />
+
                 {/* 검색창 */}
                 <Search
                     handleSearch={handleSearch}
                 />
+
                 {/* 목록 */}
                 <PhoneList 
                     phoneList={ searchState ? searchList : phoneList} 
@@ -201,9 +178,6 @@ class PhoneBookContainer extends Component {
                     handleRemove={handleRemove}
                 />
 
-
-                {/* <Route exact path="/phonebook/insert" component={PhoneForm}/> */}
-                
             </div>
             
         )

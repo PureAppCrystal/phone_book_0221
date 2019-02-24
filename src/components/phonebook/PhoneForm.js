@@ -44,7 +44,6 @@ class PhoneForm extends Component {
 
         return(
             <div>
-                PhoneForm
                 <Header 
                     id ={id}
                     handleLeftBtn={handleGoBack} 
@@ -54,14 +53,14 @@ class PhoneForm extends Component {
 
 
                 <div className={inputClass}>
-                    <input className="phone-input" name="name" placeholder="name" onChange={handleChange} value={name}/>
-                    <input className="phone-input" name="number" placeholder="number" onChange={handleChange} value={number}/>
+                    <input className="phone-input" name="name" placeholder="이름" onChange={handleChange} value={name}/>
+                    <input className="phone-input" name="number" placeholder="번호" onChange={handleChange} value={number}/>
                     
                 </div>
 
                 <div className={labelClass} >
-                    <div className="phone-label">{name}</div>
-                    <div className="phone-label">{number}</div>
+                    이름     <div className="phone-label">{name}</div>
+                    휴대전화 <div className="phone-label form-number">{number}</div>
                 </div>
 
                 {/* <div onClick={handleInsert}>
