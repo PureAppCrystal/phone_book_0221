@@ -56,6 +56,28 @@ class PhoneBookContainer extends Component {
         PhoneActions.search({'name': e.target.value})
     }
 
+    handleGotoUpdate = (e) => {
+        console.log("====== phonebook/GotoUpdate ======")
+        const { phoneList } = this.props
+        const selectedId = (queryString.parse(this.props.location.search)).id;
+        
+        const phone = new Map((phoneList.filter( phoneList => (
+            (phoneList.get('id')).toString() === selectedId //  
+        )).get(0)))
+
+        const { PhoneActions } = this.props;
+        PhoneActions.change({'name': phone.get('name'), 'number': phone.get('number')})
+    }
+
+    handleUpdate = (e) => {
+        console.log("====== phonebook/Update ======")
+        const { PhoneActions } = this.props
+        const { name, number } = this.props
+        const selectedId = (queryString.parse(this.props.location.search)).id;
+        PhoneActions.update({'id': selectedId, 'name': name, 'number': number})
+        PhoneActions.change({'name': '', 'number': ''})
+    }
+
     
 
     render() {
@@ -66,39 +88,78 @@ class PhoneBookContainer extends Component {
             handleClick,
             handleGoBack,
             handleSearch,
-            handleChange } = this;
+            handleChange,
+            handleUpdate,
+            handleGotoUpdate } = this;
 
             console.log("match : ", match)
 
             
 
-        // 연락처 등록하기 target : insert
+        /////////////////////////// 연락처 등록하기 target : insert
         if (match.params.target === 'insert') {
             return(
                 <PhoneForm 
                     name={name} 
                     number={number}
                     handleChange={handleChange}
-                    handleInsert={handleInsert}
+                    handleRight={handleInsert}
                     handleGoBack={handleGoBack}
+                    formMode='insert'
                 />
             )
-        } else if (match.params.target === 'select') {
-            const id = (queryString.parse(location.search)).id;
-            console.log('id : ', id)
+        } 
+        /////////////////////////// 연락처 선택하기 target : select
+        else if (match.params.target === 'select') {
+            console.log("1")
+            const selectedId = (queryString.parse(location.search)).id;
            
-            const searchList = phoneList.filter( phoneList => 
-                phoneList.getIn([0, 'id']) === id //  
-            )
-                    // dfljasdkfjk 어케하는겨 
-         
-            
+            console.log("2")
+            const phone = new Map((phoneList.filter( phoneList => (
+                (phoneList.get('id')).toString() === selectedId //  
+            )).get(0)))
+
+            console.log("3")
             return(
-                <div>
-                    
-                </div>
+                <PhoneForm 
+                    id={phone.get('id')}
+                    name={phone.get('name')} 
+                    number={phone.get('number')}
+                    handleChange={handleChange}
+                    handleRight={handleGotoUpdate}
+                    handleGoBack={handleGoBack}
+                    formMode='select'
+                />
+            )
+        } 
+        /////////////////////////// 연락처 수정하기 target : update
+        else if (match.params.target === 'update') {
+            const selectedId = (queryString.parse(location.search)).id;
+            //console.log('id : ', id)
+           
+            const phone = new Map((phoneList.filter( phoneList => (
+                (phoneList.get('id')).toString() === selectedId //  
+            )).get(0)))
+
+
+            
+            const {name, number} = this.props
+
+
+
+            return(
+                <PhoneForm 
+                    id={phone.get('id')}
+                    name={name} 
+                    number={number}
+                    handleChange={handleChange}
+                    handleRight={handleUpdate}
+                    handleGoBack={handleGoBack}
+                    formMode='update'
+                />
             )
         }
+
             
 
         return (

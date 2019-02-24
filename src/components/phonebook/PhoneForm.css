@@ -2,9 +2,33 @@
 
 .phone-input-area {
     padding: 1rem;
+    
+}
+
+.phone-input-area-hide{
+    padding: 1rem;
+    display: none;
 }
 
 .phone-input {
+    width: 100%;
+    height: 2rem;
+    margin-bottom: 10px;
+}
+
+
+
+.phone-label-area {
+    padding: 1rem;
+    
+}
+
+.phone-label-area-hide{
+    padding: 1rem;
+    display: none;
+}
+
+.phone-label{
     width: 100%;
     height: 2rem;
     margin-bottom: 10px;

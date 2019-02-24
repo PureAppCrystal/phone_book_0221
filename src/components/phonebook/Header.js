@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import './Header.css';
 
 
-const Header = ({handleLeftBtn, handleRightBtn, formMode}) => {
+const Header = ({id, handleLeftBtn, handleRightBtn, formMode}) => {
 
     let rightBtn = {}
     switch (formMode) {
@@ -20,6 +20,21 @@ const Header = ({handleLeftBtn, handleRightBtn, formMode}) => {
                 centerTitle: "연락처",
                 rightTitle: "등록",
                 target: "/phonebook/insert"
+            }
+            break;
+        case 'select':
+            rightBtn = {
+                centerTitle: "연락처",
+                rightTitle: "편집",
+                target: `/phonebook/update?id=${id}`
+            }
+            break;
+        case 'update':
+            rightBtn = {
+                conterTitle: "연락처 편집",
+                rightTitle: "완료",
+                target: `/phonebook/select?id=${id}`,
+                onClick: {handleRightBtn}
             }
             break;
         default :

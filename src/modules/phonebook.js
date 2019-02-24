@@ -5,11 +5,13 @@ const CHANGE = "CHANGE"
 const INSERT = "INSERT"
 const REMOVE = "REMOVE"
 const SEARCH = "SEARCH"
+const UPDATE = "UPDATE"
 
 export const change = createAction(CHANGE);
 export const insert = createAction(INSERT);
 export const remove = createAction(REMOVE);
 export const search = createAction(SEARCH);
+export const update = createAction(UPDATE);
 
 
 const getId = (state) => {
@@ -24,7 +26,7 @@ const initialState = Map({
     //phoneList: List([]),
     phoneList: List([ 
         Map({
-            id: '1',
+            id: 1,
             name: 'aaaa',
             number: '123'
         })
@@ -72,7 +74,19 @@ export default handleActions({
         }
 
         return newState;
-        
+    },
+    [UPDATE] : (state, action) => {
+        console.log("action : ", action )
 
+        const { id } = action.payload;
+        const phoneList = state.get('phoneList');
+        const newPhoneList = phoneList.map(phone => 
+            phone.get('id').toString() === id ? Map({ ...phone,  ...action.payload}) : phone
+        )
+
+        const newState = state.set('phoneList', newPhoneList)
+
+        
+        return newState;
     }
 }, initialState)
