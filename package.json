@@ -14,7 +14,9 @@
     "redux": "^4.0.1",
     "redux-actions": "^2.6.4",
     "redux-logger": "^3.0.6",
-    "redux-pender": "^2.0.12"
+    "redux-pender": "^2.0.12",
+    "semantic-ui-css": "^2.4.1",
+    "semantic-ui-react": "^0.85.0"
   },
   "scripts": {
     "start": "cross-env NODE_PATH=src react-scripts start",

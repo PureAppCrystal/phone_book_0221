@@ -1,7 +1,7 @@
 
 .phone-search {
     background-color: #ebebeb;
-    padding: 1rem;
+    padding: 7px;
 }
 
 .phone-search-input {
@@ -9,7 +9,7 @@
 
     padding-left : 10px;
     
-    height: 2rem;
+    height: 1.5rem;
     
     background-color: #ffffffa4;
     outline: none;
@@ -17,7 +17,7 @@
     border-bottom: 0px solid #224466;
     border-radius: 10px;
 
-    font-size: 1.5rem;
+    font-size: 1rem;
     color:  #000000a2;
 }
 

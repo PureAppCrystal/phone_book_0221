@@ -1,5 +1,6 @@
 import React from 'react';
 import {Link} from 'react-router-dom'
+import {Button} from 'semantic-ui-react';
 import './Phone.css'
 
 const Phone = ({id, name, handleClick, handleRemove}) => {
@@ -17,12 +18,18 @@ const Phone = ({id, name, handleClick, handleRemove}) => {
             
 
             {/* 삭제버튼 */}
-            <div className="phone-delete" onClick={ (e) => {
-                e.stopPropagation();
-                handleRemove(id);
-            }}>
-                삭제
-            </div>
+            {/* <div> */}
+            <Button 
+                className="phone-delete"
+                icon="trash"
+                color="red"
+                onClick={ (e) => {
+                    e.stopPropagation();
+                    handleRemove(id);
+                }
+            }>
+                
+            </Button>
             
         </div>
     )
